@@ -10,12 +10,9 @@ public class Pipe : MonoBehaviour
     private float _speed = 2f;
     private SpawnManager _spawnManager;
     private Pipe[] _pipes;
-    [SerializeField] private Bird _bird;
-
     // Start is called before the first frame update
     void Start()
     {
-        _bird = GameObject.FindWithTag("Player").GetComponent<Bird>();
         _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
     }
 
@@ -38,19 +35,7 @@ public class Pipe : MonoBehaviour
         transform.Translate(Vector3.left *_speed * Time.deltaTime,  Space.World);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        Debug.LogError("OnCollisionEnter2D");
-        if (other.tag == "Player")
-        {
-            Debug.LogError("OnCollisionEnter2D");
-            _bird.GameOver();
-            //add sound Gameover
-        }
-    }
+    
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.LogError("OnCollisionEnter2D");
-    }
+    
 }

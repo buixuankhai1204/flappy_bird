@@ -11,6 +11,7 @@ public class Bird : MonoBehaviour
     private float _jumHeight = 5.0f;
 
     private CharacterController _controller;
+    private Pipe _pipe;
     Vector3 velocity = new Vector3(0, 0, 0);
 
     private float yPosition;
@@ -20,6 +21,9 @@ public class Bird : MonoBehaviour
     void Start()
     {
         _controller = GetComponent<CharacterController>();
+        /*
+        _pipe = GameObject.FindWithTag("Pipe").GetComponent<Pipe>();
+        */
 
     }
 
@@ -43,7 +47,7 @@ public class Bird : MonoBehaviour
         
         velocity.y = yPosition;
         
-        _controller.Move(velocity *Time.deltaTime);
+        transform.Translate(velocity *Time.deltaTime);
     }
 
     public void GameOver()
@@ -51,6 +55,17 @@ public class Bird : MonoBehaviour
         //Add Animation GameOver
         //free fall bird
         //GameOver = true;
+    }
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.LogError("OnTriggerEnter2D");
+
+        if (other.tag == "Pipe")
+        {
+            GameOver();
+            //add sound Gameover
+        }
     }
     
 }
