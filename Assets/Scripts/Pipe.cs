@@ -35,7 +35,4 @@ public class Pipe : MonoBehaviour
         transform.Translate(Vector3.left *_speed * Time.deltaTime,  Space.World);
     }
 
-    
-
-    
 }
